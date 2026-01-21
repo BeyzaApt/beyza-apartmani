@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Beyza Apartmanı Bilgi Portalı</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body{
+  font-family:Arial, Helvetica, sans-serif;
+  background:#f4f6f8;
+  padding:20px;
+}
+h1{
+  text-align:center;
+  margin-bottom:5px;
+}
+h2{
+  text-align:center;
+  font-size:14px;
+  color:#555;
+  margin-bottom:20px;
+}
+
+/* DUYURU */
+.announcement{
+  background:#fff3cd;
+  border-left:6px solid #f0ad4e;
+  max-width:420px;
+  margin:0 auto 15px auto;
+  padding:15px;
+  border-radius:10px;
+  font-size:14px;
+  color:#333;
+}
+.announcement strong{
+  display:block;
+  margin-bottom:5px;
+}
+
+/* GERİ SAYIM */
+.countdown{
+  background:#e8f0fe;
+  border-left:6px solid #1a73e8;
+  max-width:420px;
+  margin:0 auto 20px auto;
+  padding:15px;
+  border-radius:10px;
+  text-align:center;
+}
+.countdown span{
+  font-size:18px;
+  font-weight:bold;
+  color:#1a73e8;
+}
+
+/* BİLGİ */
+.info-box{
+  background:#ffffff;
+  max-width:420px;
+  margin:0 auto 15px auto;
+  padding:15px;
+  border-radius:12px;
+  box-shadow:0 3px 8px rgba(0,0,0,0.06);
+  text-align:center;
+  font-size:14px;
+  color:#333;
+}
+.info-box strong{
+  font-size:16px;
+}
+
+/* WHATSAPP */
+.whatsapp{
+  display:block;
+  margin-top:10px;
+  padding:14px;
+  background:#25D366;
+  color:#fff;
+  text-decoration:none;
+  border-radius:10px;
+  font-weight:bold;
+}
+.whatsapp:hover{
+  background:#1ebe5d;
+}
+
+/* KARTLAR */
+.card{
+  background:#ffffff;
+  padding:18px;
+  margin:14px auto;
+  max-width:420px;
+  border-radius:12px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.08);
+}
+.card a{
+  display:block;
+  padding:16px;
+  background:#1a73e8;
+  color:#fff;
+  text-decoration:none;
+  border-radius:10px;
+  font-weight:bold;
+  text-align:center;
+  font-size:16px;
+}
+.card a:hover{
+  background:#155ec0;
+}
+
+.note{
+  font-size:12px;
+  color:#666;
+  text-align:center;
+  margin-top:25px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🏢 Beyza Apartmanı</h1>
+<h2></h2>
+
+<!-- 🔔 DUYURU -->
+<div class="announcement">
+  <strong>📢 Duyuru</strong>
+  2026 Tüm aidatlarının son ödeme tarihi <b> Her Ayın 25'idir.</b>
+</div>
+
+<!-- ⏳ GERİ SAYIM -->
+<div class="countdown">
+  ⏰ Aidat Son Ödeme Süresi:<br>
+  <span id="timer">Hesaplanıyor...</span>
+</div>
+
+<!-- ℹ️ APARTMAN BİLGİ -->
+<div class="info-box">
+  <strong>Beyza Apartmanı</strong><br>
+  Hürriyet Mah. Kurtuluş Sok. No:31<br>
+  Orhangazi/BURSA<br>
+  Yönetici: 05348475933<br>
+
+  <a class="whatsapp"
+     href="https://wa.me/905348475933?text=Merhaba%20Beyza%20Apartmanı%20yönetimi%20ile%20iletişime%20geçmek%20istiyorum."
+     target="_blank">
+     💬 WhatsApp’tan Yöneticiye Yaz
+  </a>
+</div>
+
+<!-- 📊 LİNKLER -->
+<div class="card">
+  <a href="https://drive.google.com/file/d/1TdHvUwJ8EoJIJF3locsNMyxfxNMGgj2T/view?usp=sharing" target="_blank">
+    📊 Aidat & Borç Durumu
+  </a>
+</div>
+
+<div class="card">
+  <a href="YILLIK_FAALIYET_RAPORU_LINKI" target="_blank">
+    📄 Yıllık Faaliyet Raporu
+  </a>
+</div>
+
+<div class="card">
+  <a href="https://drive.google.com/file/d/19cjlzLtGToI0jMPW4NWDL3vUFnizXSzd/view?usp=sharing" target="_blank">
+    🛠️ Yıllık Bakım Takvimi
+  </a>
+</div>
+
+<div class="card">
+  <a href="ACIL_DURUM_VE_KRIZ_PLANI_LINKI" target="_blank">
+    🚨 Acil Durum & Kriz Planı
+  </a>
+</div>
+
+<p class="note">
+Salt okunur – Değiştirilemez<br>
+© Beyza Apartmanı Yönetimi<br>
+Tolgahan Kapitan
+</p>
+
+<script>
+// 🔧 BURADAN SADECE TARİHİ DEĞİŞTİR
+const sonOdeme = new Date("2026-01-25T23:59:59").getTime();
+
+const timerEl = document.getElementById("timer");
+
+setInterval(() => {
+  const simdi = new Date().getTime();
+  const fark = sonOdeme - simdi;
+
+  if (fark <= 0) {
+    timerEl.innerHTML = "❌ Süre doldu";
+    timerEl.style.color = "red";
+    return;
+  }
+
+  const gun = Math.floor(fark / (1000 * 60 * 60 * 24));
+  const saat = Math.floor((fark / (1000 * 60 * 60)) % 24);
+  const dakika = Math.floor((fark / (1000 * 60)) % 60);
+
+  timerEl.innerHTML =
+    gun + " gün " + saat + " saat " + dakika + " dakika";
+}, 1000);
+</script>
+
+</body>
+</html>
